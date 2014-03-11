@@ -1,0 +1,31 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html">
+<body>
+	<div class="header">
+		<ui:composition>
+			<p>
+				<h:graphicImage id="hagerTopBar">
+					<div location="hagerTopBar"></div>
+				</h:graphicImage>
+				<h:graphicImage id="hagerLogo">
+					<div location="hagerLogo"></div>
+				</h:graphicImage>
+				<h:graphicImage id="hagerPrint" url="../images/icon_print_hover.gif"
+					style="position: absolute; top: 60px; left: 20px;" />
+				<h:graphicImage id="hagerEvaluate"
+					url="../images/icon_evaluate_hover.gif"
+					style="position: absolute; top: 60px; left: 80px;" />
+				<h:graphicImage id="hagerRecommend"
+					url="../images/icon_recommend_page_hover.gif"
+					style="position: absolute; top: 60px; left: 50px;" />
+				<h:graphicImage id="hagerMail" url="../images/icon_mail_hover.gif"
+					style="position: absolute; top: 60px; left: 110px;" />
+			</p>
+		</ui:composition>
+		<ui:component>
+			<div location="mainView"></div>
+		</ui:component>
+	</div>
+</body>
+</html>
