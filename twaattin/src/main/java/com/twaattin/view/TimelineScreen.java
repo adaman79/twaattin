@@ -36,7 +36,7 @@ public class TimelineScreen extends VerticalLayout implements View {
 	public TimelineScreen() {
 	}
 
-	private void setUpTable(Table table) {
+	/*private void setUpTable(Table table) {
 		table.addGeneratedColumn("source", new SourceColumnDecorator());
 		table.addGeneratedColumn("screenName", new ScreenColumnGenerator());
 		table.addGeneratedColumn("name", new NameColumnGenerator());
@@ -50,7 +50,7 @@ public class TimelineScreen extends VerticalLayout implements View {
 		table.setColumnHeader("text", "Tweet");
 		table.setVisibleColumns(new Object[] { "text", "name", "screenName",
 				"profileImage", "createdAt", "source" });
-	}
+	}*/
 
 	@Override
 	public void enter(ViewChangeEvent event) {
@@ -63,22 +63,25 @@ public class TimelineScreen extends VerticalLayout implements View {
 		HorizontalLayout menuBar = new HorizontalLayout(label, button);
 		menuBar.setWidth(100, Unit.PERCENTAGE);
 		menuBar.setComponentAlignment(button, Alignment.MIDDLE_RIGHT);
-
+		menuBar.setMargin(true);
 		addComponent(menuBar);
+
 		TweetRefresherBehavior behavior = TwaattinUI.getCurrent().getTweetRefresherBehavior();
 		addComponentAttachListener(behavior);
 
-		Table table = new Table();
-		
-		BeanContainer<Long, Status> container = new BeanContainer<Long, Status>(Status.class);
+		VerticalLayout timeline = new VerticalLayout();
+		addComponent(timeline);
+//		Table table = new Table();
+//		
+//		BeanContainer<Long, Status> container = new BeanContainer<Long, Status>(Status.class);
+//
+//		table.setContainerDataSource(container);
+//		container.setBeanIdProperty("id");
+//		table.setLocale(Locale.ENGLISH);
+//
+//		addComponent(table);
 
-		table.setContainerDataSource(container);
-		container.setBeanIdProperty("id");
-		table.setLocale(Locale.ENGLISH);
-
-		addComponent(table);
-
-		setUpTable(table);
+		//setUpTable(table);
 		
 	}
 }

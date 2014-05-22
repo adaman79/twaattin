@@ -13,20 +13,17 @@ import twitter4j.UserList;
 import twitter4j.UserStreamListener;
 
 import com.twaattin.presenter.TweetRefresherBehavior;
+import com.twaattin.view.LoginScreen;
 import com.vaadin.annotations.Push;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.cdi.CDIUI;
 import com.vaadin.cdi.CDIViewProvider;
+import com.vaadin.navigator.Navigator;
 import com.vaadin.server.SystemError;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Notification;
 import com.vaadin.ui.UI;
 
 @Title("Twitter Vaadin example")
@@ -47,7 +44,7 @@ public class TwaattinUI extends UI implements UserStreamListener {
 	}
 
 	@WebServlet(value = "/*", asyncSupported = true, initParams = { @WebInitParam(name = "UIProvider", value = "com.vaadin.cdi.CDIUIProvider") })
-	@VaadinServletConfiguration(productionMode = false, ui = TwaattinUI.class, widgetset = "com.twaattin.DisableOnClickButtonWidgetset")
+	@VaadinServletConfiguration(productionMode = false, ui = TwaattinUI.class, widgetset = "com.twaattin.IncubatorWidgetset")
 	public static class Servlet extends VaadinServlet {
 
 		private static final long serialVersionUID = -5422929630391151245L;
@@ -67,37 +64,62 @@ public class TwaattinUI extends UI implements UserStreamListener {
 
 	@Override
 	protected void init(VaadinRequest request) {
-		disabledLabel = request.getParameter("label");
-
-		final Button submitButton = new Button("Submit");
-
-		new DisableOnClickButtonExtension(
-				disabledLabel == null ? "Please wait..." : "Some other")//disabledLabel)
-				.extend(submitButton);
-
-		Button queryButton = new Button("Query");
-
-		queryButton.addClickListener(new ClickListener() {
-
-			@Override
-			public void buttonClick(ClickEvent event) {
-
-				Notification.show("Enabled: " + submitButton.isEnabled());
-			}
-		});
-
-		HorizontalLayout layout = new HorizontalLayout(submitButton,
-				queryButton);
-
-		layout.setSpacing(true);
-		layout.setMargin(true);
-
-		setContent(layout);
+		/*
+		 * YouTube Widget example
+		 * 
+		 * final YouTubeViewer viewer = new YouTubeViewer("yWrkinZkKjI");
+		 * 
+		 * TextField field = new TextField("Movie ID:", "yWrkinZkKjI");
+		 * 
+		 * field.setImmediate(true);
+		 * 
+		 * field.addValueChangeListener(new ValueChangeListener() {
+		 * 
+		 * @Override public void valueChange(ValueChangeEvent event) {
+		 * 
+		 * String movieId = (String) event.getProperty().getValue();
+		 * 
+		 * viewer.setMovieId(movieId); } });
+		 * 
+		 * VerticalLayout layout = new VerticalLayout(viewer, field);
+		 * 
+		 * layout.setSpacing(true); layout.setMargin(true);
+		 * 
+		 * setContent(layout);
+		 */
 
 		/*
-		 * setSizeFull(); Navigator navigator = new Navigator(this, this);
-		 * navigator.addProvider(viewProvider); setContent(new LoginScreen());
+		 * WidgetSet Extension
+		 * 
+		 * disabledLabel = request.getParameter("label");
+		 * 
+		 * final Button submitButton = new Button("Submit");
+		 * 
+		 * new DisableOnClickButtonExtension( disabledLabel == null ?
+		 * "Please wait..." : "Some other")//disabledLabel)
+		 * .extend(submitButton);
+		 * 
+		 * Button queryButton = new Button("Query");
+		 * 
+		 * queryButton.addClickListener(new ClickListener() {
+		 * 
+		 * @Override public void buttonClick(ClickEvent event) {
+		 * 
+		 * Notification.show("Enabled: " + submitButton.isEnabled()); } });
+		 * 
+		 * HorizontalLayout layout = new HorizontalLayout(submitButton,
+		 * queryButton);
+		 * 
+		 * layout.setSpacing(true); layout.setMargin(true);
+		 * 
+		 * setContent(layout);
 		 */
+
+		setSizeFull();
+		Navigator navigator = new Navigator(this, this);
+		navigator.addProvider(viewProvider);
+		setContent(new LoginScreen());
+
 	}
 
 	@Override
@@ -124,7 +146,7 @@ public class TwaattinUI extends UI implements UserStreamListener {
 
 			@Override
 			public void run() {
-				tweetRefresherBehavior.updateStatus(status);
+				tweetRefresherBehavior.updatedStatus(status);
 
 			}
 		});

@@ -25,4 +25,6 @@
 	<!-- <set-configuration-property name="devModeRedirectEnabled" value="true" 
 		/> -->
 
+
+    <inherits name="com.twaattin.IncubatorWidgetset" />
 </module>

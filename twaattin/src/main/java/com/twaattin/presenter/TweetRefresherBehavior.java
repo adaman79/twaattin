@@ -2,36 +2,42 @@ package com.twaattin.presenter;
 
 import twitter4j.Status;
 
-import com.vaadin.data.util.BeanContainer;
+import com.twaattin.model.StatusDto;
+import com.twaattin.view.StatusComponent;
+import com.twaattin.view.StatusConverter;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.HasComponents.ComponentAttachEvent;
 import com.vaadin.ui.HasComponents.ComponentAttachListener;
-import com.vaadin.ui.Table;
+import com.vaadin.ui.Layout;
 
 public class TweetRefresherBehavior implements ComponentAttachListener {
 
 	private static final long serialVersionUID = 8178470139050782838L;
 
-	private BeanContainer<Long, Status> container;
+	private Layout layout;
 
-	public void updateStatus(Status status) {
-		if (container != null) {
-			container.addBean(status);
+	public void updatedStatus(Status status) {
+
+		if (layout != null) {
+
+			StatusConverter converter = new StatusConverter();
+
+			StatusDto dto = converter.convert(status);
+
+			StatusComponent statusComponent = new StatusComponent(dto);
+
+			layout.addComponent(statusComponent);
 		}
 	}
 
 	@Override
 	public void componentAttachedToContainer(ComponentAttachEvent event) {
+
 		Component component = event.getAttachedComponent();
 
-		if (component instanceof Table) {
-			Table table = (Table) component;
+		if (component instanceof Layout) {
 
-			container = (BeanContainer<Long, Status>) table
-					.getContainerDataSource();
-
+			layout = (Layout) component;
 		}
-
 	}
-
 }
