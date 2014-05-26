@@ -13,10 +13,11 @@
 		<vaadin.version>7.1.11</vaadin.version>
 		<vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
 	</properties>
-
+	<!-- SCM connection to gitHub -->
 	<scm>
 		<connection>scm:git:git@github.com:adaman79/twaattin.git</connection>
 	</scm>
+	<!-- Artifactory server repos -->
 	<distributionManagement>
 		<repository>
 			<id>ciserver</id>
