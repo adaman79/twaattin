@@ -15,7 +15,7 @@
 	</properties>
 
 	<scm>
-		<connection>scm:git:git://github.com:adaman79/twaattin.git</connection>
+		<connection>scm:git:git@github.com:adaman79/twaattin.git</connection>
 	</scm>
 	<distributionManagement>
 		<repository>
