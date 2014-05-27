@@ -1,22 +1,19 @@
 package com.twaattin.presenter;
 
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
+import org.mockito.Mockito;
 import org.testng.annotations.Test;
 
-import com.twaattin.TwaattinUI;
+import com.twaattin.TwaattinUITest;
+import com.twaattin.event.LoginEvent;
 
-public class LoginBehaviorTest {
+public class LoginBehaviorTest extends TwaattinUITest{
 
-	TwaattinUI ui;
-
-	@BeforeTest
-	public void init() {
-		ui = new TwaattinUI();
-	}
+	LoginBehavior loginBehavior;
 
 	@Test
 	public void handleLogin() {
-		throw new RuntimeException("Test not implemented");
+		loginBehavior = (LoginBehavior) getUi().getViewProvider().getView("LoginBehavior");
+		LoginEvent loginEvent = Mockito.mock(LoginEvent.class);
+		loginBehavior.handleLogin(loginEvent);
 	}
 }

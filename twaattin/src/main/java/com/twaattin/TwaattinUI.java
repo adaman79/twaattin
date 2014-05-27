@@ -37,6 +37,10 @@ public class TwaattinUI extends UI implements UserStreamListener {
 	@Inject
 	private CDIViewProvider viewProvider;
 
+	public CDIViewProvider getViewProvider() {
+		return viewProvider;
+	}
+
 	String disabledLabel;
 
 	public String getDisabledLabel() {
