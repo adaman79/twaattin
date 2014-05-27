@@ -1,0 +1,13 @@
+:backends: yaml
+:yaml:
+  :datadir: /vagrant/files
+:hierarchy:
+#    - common
+    - jboss-config
+:logger: console
+jboss::install:
+    baseDir: "/opt"
+    version: "jboss-as-7.1.1.Final"
+    serverConf: "standard"
+    bindAddress: "0.0.0.0"
+    user: "jboss" 

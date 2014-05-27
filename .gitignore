@@ -1,6 +1,7 @@
 *~
 twaattin/src/main/webapp/VAADIN/
 out/
+vagrant/files/jboss-as-7.1.1.Final.tar.gz
 target/
 test-output/
 src/main/generated/
