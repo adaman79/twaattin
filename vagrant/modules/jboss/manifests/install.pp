@@ -26,7 +26,8 @@ class jboss::install($baseDir,
     file {
         "/var/lib/puppet/files/${version}.zip":
             ensure => present,
-		source => "/tmp/vagrant-puppet/modules-0/jboss/${version}.zip",
+            source => "/vagrent/files/${version}.zip",
+#		source => "/tmp/vagrant-puppet/modules-0/jboss/${version}.zip",
 #            source => "puppet:///modules/jboss/${version}.zip",
             require => File["/var/lib/puppet/files"];
         "${baseDir}":
